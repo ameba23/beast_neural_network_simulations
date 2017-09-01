@@ -1,0 +1,48 @@
+
+with original fitness function params evolve to: 
+
+Reproduction threshold: 1.16121
+Consumption rate: 2.00452
+Attractant rate: 0.5
+Repellent rate: 0.5
+Swarm radius: 20
+Swarm influence: 0.5
+Gradient influence: 0.8
+Nutrient response: 2.67636
+Attractant response: 0.841637
+Repellent response: 3.40709
+Attractant threshold: 0.525567
+Repellent threshold: -0.932744
+Radius:	1.5
+Speed: 5
+
+Reproduction threshold: 1.16121
+Consumption rate: 0.595644
+Attractant rate: 0.5
+Repellent rate: 0.5
+Swarm radius: 20
+Swarm influence: 0.5
+Gradient influence: 0.8
+Nutrient response: 2.67645
+Attractant response: 0.647627
+Repellent response: 3.40709
+Attractant threshold: 1.30391
+Repellent threshold: -0.932744
+Radius:	1.5
+Speed: 5
+
+Reproduction threshold: 1.16121
+Consumption rate: 2.00452
+Attractant rate: 0.5
+Repellent rate: 0.5
+Swarm radius: 20
+Swarm influence: 0.5
+Gradient influence: 0.8
+Nutrient response: 2.24168
+Attractant response: 0.647627
+Repellent response: 3.40709
+Attractant threshold: 0.525567
+Repellent threshold: -0.932744
+Radius:	1.5
+Speed: 5
+

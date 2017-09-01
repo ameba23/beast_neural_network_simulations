@@ -1,0 +1,62 @@
+from bacteria_4_3.pop:
+
+Reproduction threshold: 6.88486
+Consumption rate: 0.380076
+Attractant rate: 0.5
+Repellent rate: 4
+Swarm radius: 20
+Swarm influence: 0.5
+Gradient influence: 0.8
+Nutrient response: 3.28705
+Attractant response: 1.28938
+Repellent response: 1.30275
+Attractant threshold: 0.842489
+Repellent threshold: -0.563571
+Radius:	1.5
+Speed: 5
+
+Reproduction threshold: 6.88486
+Consumption rate: 0.380076
+Attractant rate: 0.5
+Repellent rate: 4
+Swarm radius: 20
+Swarm influence: 0.5
+Gradient influence: 0.8
+Nutrient response: 3.28705
+Attractant response: 1.28938
+Repellent response: 1.30275
+Attractant threshold: 0.842489
+Repellent threshold: -0.563571
+Radius:	1.5
+Speed: 5
+
+Reproduction threshold: 6.88486
+Consumption rate: 0.380076
+Attractant rate: 0.5
+Repellent rate: 4
+Swarm radius: 20
+Swarm influence: 0.5
+Gradient influence: 0.8
+Nutrient response: 3.28705
+Attractant response: 1.28938
+Repellent response: 1.30275
+Attractant threshold: 0.842489
+Repellent threshold: -0.563571
+Radius:	1.5
+Speed: 5
+
+Reproduction threshold: 6.88486
+Consumption rate: 0.380076
+Attractant rate: 0.5
+Repellent rate: 4
+Swarm radius: 20
+Swarm influence: 0.5
+Gradient influence: 0.8
+Nutrient response: 3.28705
+Attractant response: 1.28938
+Repellent response: 1.30275
+Attractant threshold: 0.842489
+Repellent threshold: -0.563571
+Radius:	1.5
+Speed: 5
+

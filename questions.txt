@@ -1,0 +1,95 @@
+AI23 Coursework 2
+Greg Jones
+
+1. Braitenberg vehilces in BEAST
+
+(a) Run the Braitenberg demo. Describe the behaviour of the two vehicles. (Try positioning them at various places in the model world & describe how they "react".)
+
+One vehicle follows the path of dots, and the other stays still.  If the
+still one (vehicle 2a) is moved near the dots it turns away from them.
+If it's placed in the middle of the two lines of dots, so it has dots on either side,
+it will move forward through them as it turns away from the dots from
+both sides.  
+
+***screenshots?***
+
+(b) How do the vehicles use sensory information to control the orientation and velocities? What file did you have to look at to find the answer?
+
+The vehicles have two sensors, one showing the proximity of 'dots' to the right and one to the left, and also two motors controlling a left 'wheel' and a right 'wheel'.  By activating one motor but not the other, turning left or right is achieved, and by activating both motors simultaniously the vehicle will move straight forward.
+
+
+(c) What specific control laws govern the motor behaviour of each vehicle? What change could you make in the code to test your conclusion?
+
+On Vehicle 2a the left proximity sensor excites the left 'wheel' and right proximity sensor excites the right wheel.  This causes the vehicle to move away from dots, since if it detects a dot to the left, the left motor will be activated causing it to turn right.
+The code below controls this behaviour. 
+
+  This.Controls["left"] = This.Sensors["left"]->GetOutput();
+  This.Controls["right"] = This.Sensors["right"]->GetOutput();
+
+
+On Vehicle 2b the connections are crossed so the left proximity sensor excites the right 'wheel' and right proximity sensor excites the left wheel. This causes the vehicle to move towards dots.  The code below controls this behaviour.
+
+  This.Controls["left"] = This.Sensors["right"]->GetOutput();
+  This.Controls["right"] = This.Sensors["left"]->GetOutput();
+
+To test this conclusion I tried changing the code above so that they both had straight-through connections (left sensor to left motor).  This made them both behave as vehicle 2a (turn away from dots).
+
+I then changed them so they both had crossed connections (left sensor to right motor), and noticed they both behaved as vehicle 2b (turn towards dots).
+
+***diagram off webpage***
+
+(d) Can you ascribe any intelligence to the vehicles? Explain and argue your case.
+
+In his book, Braitenberg describes the two vehicles as cowardly and aggressive, which is probably how you would describe the behaviour of an animal doing the same thing.  But since we know that the mechanism behind these behaviours is so simple we are unsure about using those kind of words.  Certainly they appear very lifelike, but they don't show any of the properties we associate with intelligence, like learning or creativity.  Braitenberg describes more complicated vehicles with different types of sensor, and connections which decrease motor activity as well as increase it, and notes that very complex behaviour arises and it is not so obvious exactly what is going on.  He claims that when observing animal behaviour we often assume the mechanisms behind it are far more complex than they actually are.  I would ascribe a small degree of intelligence to them as  
+ 
+ 
+2. Mouse demo in BEAST
+
+(a) Run the mouse demo. Describe the evolution of the behaviour of the mice. (How do they behave initially, as evolution progresses, and after a long evolutionary time?) Provide supporting evidence.
+
+To begin with the mice move slowly, and generally in circles.  Occasionally, one or two of them randomly collide with cheese, but since they move so slowly and in circles staying in roughly the same position, even random collisions with cheese are rare in the short life of a generation.  Gradually the mice get faster and move in straighter lines, and more cheese is eaten.  Eventually they head straight for the cheeses as though the can 'see' them.  
+
+***screenshots***  
+
+(b) What collective behaviour is observed, if any? Give supporting evidence. Explain why collective behaviour is possible/impossible in this demo.
+
+No obvious collective behaviour was noticed.  After very long evolutionary time some mice appear to move in clusters because they are all heading for the same cheese.  However, strong collective behaviour is not possible with these mice as their only sensor gives them information about the location of cheeses, not about other mice.  When another mouse eats nearby cheese, the disappearance of the cheese can be sensed, but not the other mouse itself.  This causes many mice to all rush for the same piece of cheese, and of course only one of them gets it so adding a sensor to detect other mice would be an evolutionary advantage as it would prevent them from heading towards cheeses which other mice are already nearer to.
+
+(c) Describe the fitness or performance of the mice over the generations. Do the mice progressively improve? Do they reach a stable evolutionary solution, and if so what is it? Furthermore, how do fitness values of the population and the individuals in it evolve over time? Explain and provide supporting evidence for your answers.
+
+The fitness of the mice progressively improves for roughly the first 200 generations by and then stays more or less constant from there on, so they reach a stable evolutionary solution.  
+***what is the solution?*** 
+
+As the graph shows, the average fitness values eventually reach around 0.007, and the fitness of the fittest mouse in the population reaches stays around 0.02.  Although there are some cases of mice with very high fitness in comparison, presumably this is down to chance (just happening to collide with six cheeses one after another for example) as otherwise they would have survived longer and brought the whole population up to those high fitness values.
+
+***excell charts***
+
+(d) What is the fitness function used in this GA? Find it in the code and justify it. Does this fitness function produce an "optimal" strategy for these mice? Explain.
+Recommendation: In order to help you answer this question, try to think of other formulations of the fitness function, edit the code and try them out; compare your findings with the original and modified fitness functions. Can you explain the discrepancies you found (if any)?
+
+Fitness function is number of cheeses eaten divided by distance travelled:
+
+virtual float GetFitness()const
+{
+        return This.cheesesFound > 0 ? static_cast<float>(This.cheesesFound) / This.DistanceTravelled.as<float>() : 0;
+}
+
+So the optimum mouse would find the shortest path to collect the most cheeses.  This does not take speed into account, but since the animats have a fixed speed? this shouldn't matter.  so it is not possible to evolve faster mice.
+
+I tried changing it to just the number of cheeses eaten.
+other parameters?
+
+(e) What modifications would you incorporate in this code (in the neural network, sensors, fitness function or combination thereof) to improve the performance of these mice? Be as specific as possible in the suggestions you make and justify your answer.
+
+possibles:
+
+GA currently crossover probability 0.7, mutation probability 0.05, rank method with pressure=2. change these?
+change amount of mice/cheese/time step(longer) to see what happens?
+
+proximity sensor instead of angle sensor?  angle to nearest cheese is not realistic in the physical world.  The mouse as no idea how far away the nearest cheese is or how many cheeses are nearby.  In situations where there are many nearby cheeses it may cause problems, as the mouse might have to turn back on itself to get the nearest cheese which since it can reverse might mean more distance than getting the slightly further away one which is straight ahead.
+
+proximity to other mice?
+
+recurrent instead of feed forward?  or is the optimal solution already found?
+
+(f) Implement your solution and test it.

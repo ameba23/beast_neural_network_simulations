@@ -1,0 +1,57 @@
+AI23 Assignment 3
+Bacterial colonies in BEAST 
+Due date: 5 May, 2004, 9am
+
+
+1. Fractal pattern formation in bacterial colonies
+Use the bacterial colony simulation to generate fractal patterns. Recall, minimal fractal patterns can be generated when all chemotactic signalling or sensors are turned off and without bacterial motility. (a) Start by turning off all non-essential components and tune the remaining parameters to generate fractal-like patterns. 
+(Note: various "costs" such as reproductive cost, metabolic cost, etc. do NOT require tuning and may be regarded as fixed. Distributions need not be changed either.) 
+
+To generate fractal patterns, I set the nutrient, attractant and repellent responses to zero, and modified the death threshold, energy rate, reproduction threshold and reproduction cost until a pattern was formed. I also set the timesteps to 1500, to allow the bacteria more time to generate an interesting pattern. (see file ****)
+
+(b) Explain how the patterns are generated and why the parameters you found are suitable for this purpose.
+
+With plenty of food, the bacteria will just grow in a large blob, gradually getting bigger, but in a hostile environment this is not possible.  The patterns arise because the bacteria are starved, and so they need to spread themselves across the maximum area in order for each bacterium to have access to food.  Since they're not motile, they cannot just scatter themselves across the available space, they move by reproducing and gradually occupying more space.  Bacteria completely surrounded by other bacteria will not have access to food and so will die, so the surviving bacteria are spread out in a connected pattern.  I changed the parameters to make things hard for the bacteria - increasing the metabolic cost of reproduction and the energy rate.    I also ensured motility was switched off (by setting the minimum and maximum speeds to zero and switching off chemotaxis as apparently this interferes with motility).
+
+
+2. Evolving bacterial colonies
+
+Discuss:
+(a)	Could you have evolved the parameters to "learn" to generate fractals? 
+
+Yes, what's needed is an objective fitness function of what a fractal is, and to make the parameters involved part of the genotype.
+
+(b)	If so what fitness function would you implement?
+
+The most bacteria with access to food in the least space.  Access to food just means each bacterium needs it's own little bit of free space.
+
+(c)	Is your fitness function biologically realistic?
+
+Yes because the bacteria need food, and the more of them there are, the more of them will survive.
+
+(d)	What selection method would you adopt? In your answer, specify whether selection should be performed at the individual or group level.
+Bacteria with access to food would survive, bacteria enclosed in a group of other bacteria would die.  This selection should be performed at the individual level. ***not sure about this ***
+(e) Discuss the two existing options for assessments (BacteriaFractalSim). Which method would you choose and why? 
+
+The two options are to either assess the bacteria separately (BacteriaFractal2) or altogether (BacteriaFractalSim).  If assessed separately, the simulation is run 30 times for each generation and started with an individual bacterium.  If assessed altogether, a single simulation per generation is run and started with all 30 bacteria.  I would choose… **altruism?**
+
+3. Bacterial motility and chemotaxis
+
+(a) Would the incorporation of chemotactic mechanisms be beneficial to the bacteria without motility? Explain.
+
+No.  Bacteria without motility have no control over their position and so chemical signals such as attractants and repellents would have no use since the bacteria are unable to move towards an attractant or away from a repellent.  
+
+(b) If motility is introduced? What role might chemotaxis play at low, intermediate and high motility speeds (relative to the nutrient diffusion rate)? 
+
+Motile bacteria would benefit greatly from chemotaxis.  Repellents could be used to keep other bacteria away from areas low nutrient content, and attractants could be used to attract other bacteria to areas with high nutrient content.  This would be particularly likely to occur if fitness assessments were made at the group level since this communication benefits the bacteria as a group rather than benefiting individual bacteria. **try different motility speeds***
+
+(c) How does the balance between nutrient response, attractant response and repulsive response affect the collective dynamics and self-organised pattern formation? 
+
+(d) Simulate the fractal-generating bacteria with added motility and nutrient-gradient response. Demonstrate and describe the effects of attractive chemotaxis, repulsive chemotaxis, and combined attraction-repulsion effects. Specify and justify your choice of parameter values. Provide code and results.
+
+(e) Assume chemotactic signalling involves a metabolic cost. What fitness function would you choose to evolve chemotactic behaviour in motile bacterial colonies? Justify your answer.
+
+4. Evolutionary simulations
+
+Use the parameters from your answer to Question 3d and fitness function from your answer to Question 3e to try and evolve a functional chemotactic response of the bacterial colonies. A solution must be accompanied by a specification of the simulation method (e.g., "BacteriaFractal"). Partial implementations and partial success will be rewarded. Provide code and results. 
+
